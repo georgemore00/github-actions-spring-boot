@@ -16,6 +16,7 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
+          cache: maven
         name: Setup java
       - run: ./mvnw clean verify
         name: Run java tests
