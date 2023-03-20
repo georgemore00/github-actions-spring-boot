@@ -1,5 +1,8 @@
 name: Simple CI/CD for Java Application
 
+env:
+  SONAR_PROJECT_KEY: georgemore00_github-actions-spring-boot
+
 on: 
   push:
     branches:
@@ -20,8 +23,9 @@ jobs:
         name: Setup java
       - run: ./mvnw clean verify
         name: Run java tests
-      - uses: sonarsource/sonarcloud-github-action@master
+      - run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
-        name: SonarCloud Scan
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        name: Sonarcloud scan
+        
