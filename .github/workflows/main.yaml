@@ -8,8 +8,7 @@ on:
     branches:
       - "master"
   workflow_dispatch:
- 
-    
+
 jobs: 
   testing:
     runs-on: ubuntu-latest
@@ -27,6 +26,6 @@ jobs:
       - run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
         name: Sonarcloud scan
         
